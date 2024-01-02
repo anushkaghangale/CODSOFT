@@ -1,0 +1,50 @@
+function playNumberGuessingGame() {
+    console.log("Welcome to the Number Guessing Game!");
+
+    let playAgain = true;
+    let totalAttempts = 0;
+    let totalRoundsWon = 0;
+
+    while (playAgain) {
+        // Step 1: Generate a random number within the specified range
+        const targetNumber = Math.floor(Math.random() * 100) + 1;
+
+        // Step 5: Limit the number of attempts
+        const maxAttempts = 5;
+        let attempts = 0;
+
+        while (attempts < maxAttempts) {
+            // Step 2: Prompt the user to enter their guess
+            const userGuess = parseInt(prompt("Enter your guess (between 1 and 100):"));
+
+            // Step 3: Compare the user's guess and provide feedback
+            if (userGuess === targetNumber) {
+                console.log(`Congratulations! You guessed the correct number ${targetNumber}!`);
+                totalRoundsWon++;
+                break;
+            } else if (userGuess < targetNumber) {
+                console.log("Too low! Try again.");
+            } else {
+                console.log("Too high! Try again.");
+            }
+
+            attempts++;
+        }
+
+        // Step 7: Display the user's score
+        if (attempts === maxAttempts) {
+            console.log(`Sorry, you've reached the maximum number of attempts. The correct number was ${targetNumber}.`);
+        }
+
+        totalAttempts += attempts;
+
+        // Step 6: Ask the user if they want to play again
+        playAgain = confirm("Do you want to play again?");
+    }
+
+    console.log(`Thanks for playing! Your final score is based on the total attempts: ${totalAttempts}`);
+    console.log(`You won ${totalRoundsWon} round(s).`);
+}
+
+// Execute the game function when the script is run
+playNumberGuessingGame();
